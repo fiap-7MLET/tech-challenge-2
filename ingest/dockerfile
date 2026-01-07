@@ -1,6 +1,6 @@
 FROM public.ecr.aws/lambda/python:3.14
 
-RUN pip install --no-cache-dir boto pyarrow yfinance pandas -t .
+RUN pip install --no-cache-dir boto3 pyarrow yfinance pandas
 
 COPY data_handler.py .
 
