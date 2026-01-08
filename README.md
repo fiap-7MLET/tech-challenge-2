@@ -39,16 +39,6 @@ Neste diretório estão concentrados os scripts utilizados tanto para a constru�
 
 Observação: todos os arquivos abaixo são utilizados na imagem Docker com exceção do glue_job.py, que corresponde exclusivamente ao script executado no AWS Glue para aplicação das transformações de ETL e gravação dos dados refinados.
 
-.
-├── ingest/
-│ ├── .dockerignore
-│ ├── dockerfile
-│ ├── data_handler.py
-│ ├── glue_job.py
-│ └── requirements.txt
-├── .gitignore
-└── README.md
-
 ## Lambda para Ingestão de Dados
 
 Na pasta **ingest/** estão os artefatos necessários para a criação da imagem Docker utilizada pelo AWS Lambda responsável pela ingestão dos dados (exceto o script *glue_job*, usado para o ETL na AWS Glue).
