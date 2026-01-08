@@ -1,6 +1,6 @@
 import yfinance as yf
 import boto3
-from datetime import date
+from datetime import datetime, timedelta
 from io import BytesIO
 
 BUCKET="tech-challenge-ingestion"
@@ -8,7 +8,8 @@ FOLDER="raw"
 TICKER="^BVSP"
 
 def get_ticker_df(ticker):
-	df = yf.download(ticker, period="1d", interval="1d")
+	yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+	df = yf.download('^BVSP', period= "1d", interval = '1d', start=yesterday).reset_index()
 	if df.empty:
 		raise Exception(f"the ticker {ticker} returned empty from yfinance")
 	df.reset_index(inplace=True)

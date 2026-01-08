@@ -96,8 +96,7 @@ for col_name in colunas_numericas:
         df = df.withColumn(col_name, F.col(col_name).cast("double"))
 
 # Aplica o cast no DataFrame mensal (que tem nomes de colunas diferentes)
-colunas_mensais = ["media_fechamento", "max_preco_mes", "min_preco_mes", 
-                   "volume_total_mes", "volatilidade_media_mes"]
+colunas_mensais = ["media_fechamento", "max_preco_mes", "min_preco_mes", "volume_total_mes", "volatilidade_media_mes"]
 for col_name in colunas_mensais:
     if col_name in df_mensal.columns:
         df_mensal = df_mensal.withColumn(col_name, F.col(col_name).cast("double"))
@@ -189,7 +188,7 @@ cols_mensal = [
 
 # Chamadas de Registro
 registrar_no_catalog("tb_bvsp_refined", path_refined, cols_refined, 
-                        [{"Name": "ticker", "Type": "string"}, {"Name": "data_pregao", "Type": "string"}])
+                     [{"Name": "ticker", "Type": "string"}, {"Name": "data_pregao", "Type": "string"}])
 registrar_no_catalog("tb_bvsp_mensal", path_enriched_mensal, cols_mensal, 
                      [{"Name": "ano", "Type": "int"}, {"Name": "mes", "Type": "int"}])
 
