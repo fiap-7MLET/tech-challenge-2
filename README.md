@@ -5,7 +5,7 @@ Projeto desenvolvido como Tech Challenge (FIAP/Alura) com o objetivo de construi
 O pipeline cobre desde a ingestão dos dados até a disponibilização para consulta analítica, seguindo boas práticas de arquitetura de dados em nuvem.
 
 ## Objetivos
-1. Realizar a extração (scraping) de dados de ações ou índices da B3, com granularidade diária, utilizando a biblioteca yfinance.
+1. Realizar a extração (scraping) de índices da B3, com granularidade diária, utilizando a biblioteca yfinance.
 2. Ingerir os dados brutos no AWS S3 em formato Parquet, organizados com particionamento diário (camada raw).
 3. Configurar o bucket S3 para acionar uma função Lambda, responsável por iniciar o processamento dos dados.
 4. Implementar a Lambda com responsabilidade exclusiva de disparar o Job de ETL no AWS Glue, sem realizar processamento pesado.
@@ -18,7 +18,7 @@ O pipeline cobre desde a ingestão dos dados até a disponibilização para cons
 8. Disponibilizar os dados para consulta via SQL, utilizando o AWS Athena.
 
 ## Tecnologias Utilizadas
-- Python 3.14 / pyspark
+- Python 3.14 / PySpark
 - yfinance (extração de dados financeiros)
 - AWS S3 (Data Lake)
 - AWS Lambda (ingestão)
@@ -37,18 +37,6 @@ A extração dos dados é realizada utilizando a biblioteca yfinance, com persis
 
 Neste diretório estão concentrados os scripts utilizados tanto para a construção da imagem Docker da Lambda quanto para o Job de ETL no AWS Glue.
 
-´´´
-.
-├── ingest/
-│ ├── .dockerignore
-│ ├── dockerfile
-│ ├── data_handler.py
-│ ├── glue_job.py
-│ └── requirements.txt
-├── .gitignore
-└── README.md
-´´´
-
 Observação: todos os arquivos abaixo são utilizados na imagem Docker com exceção do glue_job.py, que corresponde exclusivamente ao script executado no AWS Glue para aplicação das transformações de ETL e gravação dos dados refinados.
 
 ## Criação das pastas no S3
@@ -57,9 +45,9 @@ Foram criados dois buckets no Amazon S3, seguindo a separação por camadas do D
 - **tech-challenge-raw:** responsável por armazenar os dados brutos. Contém a pasta raw/, onde os arquivos Parquet são salvos particionados por índice e data, exatamente como extraídos, sem regras de negócio.
 
 - **tech-challenge-refined:** responsável por armazenar os dados processados. Este bucket contém:
-  - **refined/:** dados tratados e enriquecidos pelo job do Glue, particionados conforme definido no ETL;
-  - **enriched/:** tabela agregada com análises mensais e métricas derivadas;
-  - **query-results/:** resultados das consultas executadas no Athena.
+  - **refined/:** dados tratados e enriquecidos pelo job do Glue, particionados conforme definido no ETL
+  - **enriched/:** tabela agregada com análises mensais e métricas derivadas
+  - **query-results/:** resultados das consultas executadas no Athena
 
 ## Lambda para Ingestão de Dados
 
