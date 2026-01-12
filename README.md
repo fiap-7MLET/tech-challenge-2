@@ -1,11 +1,11 @@
 # Pipeline Batch Bovespa: ingestão e arquitetura de dados
 
-Projeto desenvolvido como Tech Challenge (FIAP/Alura) com o objetivo de construir um pipeline batch de dados end-to-end para extração, processamento e análise de dados de ações ou índices da B3 (Bovespa), utilizando serviços da AWS.
+Projeto desenvolvido como Tech Challenge (FIAP/Alura) com o objetivo de construir um pipeline batch de dados end-to-end para extração, processamento e análise de dados do Índice Bovespa, utilizando serviços da AWS.
 
 O pipeline cobre desde a ingestão dos dados até a disponibilização para consulta analítica, seguindo boas práticas de arquitetura de dados em nuvem.
 
 ## Objetivos
-1. Realizar a extração (scraping) de índices da B3, com granularidade diária, utilizando a biblioteca yfinance.
+1. Realizar a extração (scraping) do Índice Ibovespa (sob o código BVSP) com granularidade diária, utilizando a biblioteca yfinance.
 2. Ingerir os dados brutos no AWS S3 em formato Parquet, organizados com particionamento diário (camada raw).
 3. Configurar o bucket S3 para acionar uma função Lambda, responsável por iniciar o processamento dos dados.
 4. Implementar a Lambda com responsabilidade exclusiva de disparar o Job de ETL no AWS Glue, sem realizar processamento pesado.
