@@ -121,9 +121,9 @@ A ingestão dos dados é executada de forma automática por meio de uma regra do
 - **Serviço:** Amazon EventBridge
 - **Estado:** ENABLED
 - **Descrição:** Trigger diário da ETL
-- **Expressão CRON:** `cron(0 12 ? * MON-FRI *)`
+- **Expressão CRON:** `cron(0 12 ? * MON-SAT *)`
 
-Essa regra agenda a execução do pipeline de **segunda a sexta-feira, às 12h (UTC)**, alinhando a ingestão aos dias úteis do mercado financeiro.  
+Essa regra agenda a execução do pipeline de **segunda a sábado, às 12h (UTC)**.  
 Ao ser acionada, a regra dispara a **Lambda de ingestão**, que inicia o fluxo de extração dos dados.
 
 ## ETL com AWS Glue
